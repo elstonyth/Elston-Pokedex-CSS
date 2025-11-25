@@ -19,11 +19,15 @@ export default defineConfig(({mode}) => {
   };
 
   return {
+    base: '/Elston-Pokedex-CSS/',
     plugins: [svelte(), htmlPlugin()],
     server: {
       watch: {
         usePolling: false
       }
+    },
+    build: {
+      outDir: 'dist'
     }
   }
 });
