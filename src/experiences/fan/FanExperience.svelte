@@ -154,26 +154,19 @@
   .fan-experience {
     min-height: 100vh;
     padding: 1rem;
-    padding-top: 5rem; /* Space for sticky header */
+    padding-top: 4.5rem; /* Space for sticky header */
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   .fan-header {
     text-align: center;
-    padding: 0.5rem 0;
-  }
-  
-  /* Mobile: more padding for header */
-  @media (max-width: 640px) {
-    .fan-experience {
-      padding-top: 4.5rem;
-    }
+    padding: 0.25rem 0;
   }
   
   .fan-header h1 {
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: clamp(1.25rem, 4vw, 2rem);
     font-weight: 700;
     background: linear-gradient(135deg, var(--neon-cyan), var(--neon-violet));
     -webkit-background-clip: text;
@@ -184,12 +177,12 @@
   
   .subtitle {
     color: var(--text-secondary);
-    margin: 0.5rem 0 0;
-    font-size: 0.9rem;
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
   }
   
   .filter-section {
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     width: 100%;
   }
@@ -197,10 +190,12 @@
   .fan-section {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 500px;
+    justify-content: flex-start;
+    min-height: auto;
     overflow: visible;
+    padding-bottom: 1rem;
   }
   
   .card-container {
@@ -218,17 +213,52 @@
   
   .card-container :global(.card) {
     width: 100%;
-    max-width: 320px;
+    max-width: 280px;
   }
   
-  /* Responsive card sizes */
+  /* Mobile adjustments */
   @media (max-width: 640px) {
+    .fan-experience {
+      padding-top: 4rem;
+      gap: 0.5rem;
+    }
+    
+    .fan-header {
+      padding: 0;
+    }
+    
+    .fan-header h1 {
+      font-size: 1.25rem;
+    }
+    
+    .subtitle {
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+    
     .card-container :global(.card) {
-      max-width: 260px;
+      max-width: 220px;
     }
   }
   
+  /* Desktop adjustments */
   @media (min-width: 1024px) {
+    .fan-experience {
+      padding-top: 5rem;
+      gap: 1.5rem;
+    }
+    
+    .fan-header h1 {
+      font-size: 2rem;
+    }
+    
+    .card-container :global(.card) {
+      max-width: 300px;
+    }
+  }
+  
+  /* Large desktop */
+  @media (min-width: 1440px) {
     .card-container :global(.card) {
       max-width: 340px;
     }

@@ -193,10 +193,13 @@
   <button 
     class="nav-arrow nav-prev" 
     on:click={goToPrev}
-    disabled={currentIndex === 0}
+    disabled={currentIndex <= 0}
     aria-label="Previous card"
+    title="Previous (←)"
   >
-    ‹
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
   </button>
   
   <!-- Fan cards -->
@@ -232,17 +235,33 @@
     on:click={goToNext}
     disabled={currentIndex >= totalCards - 1}
     aria-label="Next card"
+    title="Next (→)"
   >
-    ›
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
   </button>
 </div>
 
-<!-- Position indicator wrapper for mobile positioning -->
-<div class="fan-indicator-wrapper">
+<!-- Progress and indicator section -->
+<div class="fan-controls">
+  <!-- Progress bar -->
+  <div class="progress-bar-container">
+    <div 
+      class="progress-bar" 
+      style="width: {((currentIndex + 1) / totalCards) * 100}%"
+    ></div>
+  </div>
+  
+  <!-- Position indicator -->
   <div class="fan-indicator">
-    <span class="fan-position">{currentIndex + 1} / {totalCards}</span>
+    <span class="fan-position">
+      <strong>{currentIndex + 1}</strong>
+      <span class="separator">/</span>
+      <span class="total">{totalCards}</span>
+    </span>
     
-    <!-- Dot indicators (show max 7 dots) -->
+    <!-- Quick navigation dots -->
     <div class="fan-dots">
       {#each Array(Math.min(7, totalCards)) as _, i}
         {@const dotIndex = Math.max(0, Math.min(currentIndex - 3 + i, totalCards - 1))}
@@ -254,6 +273,11 @@
         />
       {/each}
     </div>
+  </div>
+  
+  <!-- Keyboard hints (desktop only) -->
+  <div class="keyboard-hints">
+    <kbd>←</kbd> <kbd>→</kbd> to navigate
   </div>
 </div>
 
@@ -362,36 +386,72 @@
     right: 10px;
   }
   
-  /* Indicator wrapper */
-  .fan-indicator-wrapper {
+  /* Fan controls section */
+  .fan-controls {
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 1rem;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  /* Progress bar */
+  .progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background: var(--glass-border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet));
+    border-radius: 2px;
+    transition: width 0.3s var(--ease-smooth);
   }
   
   /* Indicator */
   .fan-indicator {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 1rem;
   }
   
   .fan-position {
-    font-size: 0.875rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+  
+  .fan-position strong {
+    font-size: 1.25rem;
+    color: var(--neon-cyan);
+  }
+  
+  .fan-position .separator {
+    color: var(--text-muted);
+    margin: 0 0.1rem;
+  }
+  
+  .fan-position .total {
     color: var(--text-secondary);
-    font-weight: 500;
+    font-size: 0.875rem;
   }
   
   .fan-dots {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
   
   .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     border: none;
     background: var(--glass-border);
@@ -408,82 +468,160 @@
   .dot.active {
     background: var(--neon-cyan);
     transform: scale(1.3);
+    box-shadow: 0 0 8px var(--glow-cyan);
   }
   
-  /* Mobile: compact indicator */
-  @media (max-width: 640px) {
-    .fan-indicator-wrapper {
-      margin-top: 0.5rem;
-    }
-    
-    .fan-indicator {
-      flex-direction: row;
-      gap: 0.5rem;
-      margin-top: 0;
-      padding: 0.35rem 0.75rem;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-    }
-    
-    .fan-position {
-      font-size: 0.65rem;
-      order: 2;
-      opacity: 0.8;
-    }
-    
-    .fan-dots {
-      gap: 0.3rem;
-      order: 1;
-    }
-    
-    .dot {
-      width: 5px;
-      height: 5px;
-    }
-    
-    .dot.active {
-      transform: scale(1.2);
-    }
+  /* Keyboard hints */
+  .keyboard-hints {
+    font-size: 0.75rem;
+    color: var(--text-hint);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  
+  .keyboard-hints kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    padding: 0.15rem 0.4rem;
+    background: var(--glass-white);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.7rem;
   }
   
   /* Mobile adjustments */
   @media (max-width: 640px) {
     .fan-container {
-      min-height: 480px;
+      min-height: 420px;
+      padding: 20px 0;
+    }
+    
+    .fan-deck {
+      width: 240px;
+      height: 340px;
+    }
+    
+    .nav-arrow {
+      width: 44px;
+      height: 44px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .nav-prev {
+      left: 8px;
+    }
+    
+    .nav-next {
+      right: 8px;
+    }
+    
+    .fan-controls {
+      padding: 0 0.5rem;
+      gap: 0.5rem;
+    }
+    
+    .progress-bar-container {
+      height: 3px;
+    }
+    
+    .fan-indicator {
+      gap: 0.75rem;
+    }
+    
+    .fan-position {
+      font-size: 0.875rem;
+    }
+    
+    .fan-position strong {
+      font-size: 1rem;
+    }
+    
+    .fan-dots {
+      gap: 0.3rem;
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+    }
+    
+    /* Hide keyboard hints on mobile */
+    .keyboard-hints {
+      display: none;
+    }
+  }
+  
+  /* Desktop - larger fan with better spacing */
+  @media (min-width: 1024px) {
+    .fan-container {
+      min-height: 550px;
       padding: 30px 0;
     }
     
     .fan-deck {
-      width: 260px;
-      height: 380px;
+      width: 320px;
+      height: 450px;
     }
     
     .nav-arrow {
-      width: 36px;
-      height: 36px;
-      font-size: 1.25rem;
+      width: 56px;
+      height: 56px;
+    }
+    
+    .nav-arrow svg {
+      width: 28px;
+      height: 28px;
     }
     
     .nav-prev {
-      left: 5px;
+      left: 20px;
     }
     
     .nav-next {
-      right: 5px;
+      right: 20px;
+    }
+    
+    .fan-controls {
+      max-width: 500px;
+    }
+    
+    .progress-bar-container {
+      height: 5px;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
     }
   }
   
-  /* Desktop - larger fan */
-  @media (min-width: 1024px) {
+  /* Large desktop */
+  @media (min-width: 1440px) {
     .fan-container {
-      min-height: 580px;
-      padding: 40px 0;
+      min-height: 620px;
     }
     
     .fan-deck {
-      width: 340px;
-      height: 480px;
+      width: 360px;
+      height: 500px;
+    }
+    
+    .nav-prev {
+      left: 40px;
+    }
+    
+    .nav-next {
+      right: 40px;
     }
   }
 </style>
