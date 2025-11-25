@@ -17,7 +17,7 @@
   // Load cards
   const loadCards = async () => {
     try {
-      const response = await fetch('/data/cards-151.json');
+      const response = await fetch(import.meta.env.BASE_URL + 'data/cards-151.json');
       const cards = await response.json();
       allCards = cards.map(card => {
         if (card.rarity === 'Common' || card.rarity === 'Uncommon') {

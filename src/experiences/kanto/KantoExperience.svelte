@@ -28,7 +28,7 @@
   let sortDirection = "asc";
 
   const getCards = async () => {
-    const response = await fetch("/data/cards-151.json");
+    const response = await fetch(import.meta.env.BASE_URL + "data/cards-151.json");
     const cards = await response.json();
     return cards;
   };

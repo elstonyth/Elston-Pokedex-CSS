@@ -13,7 +13,7 @@
 	let isLoading = true;
 
 	const getCards = async () => {
-		let cardFetch = await fetch("/data/cards.json");
+		let cardFetch = await fetch(import.meta.env.BASE_URL + "data/cards.json");
 		let cards = await cardFetch.json();
 		return cards;
 	};
