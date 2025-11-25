@@ -18,6 +18,10 @@
     animation: scanlineMove 8s linear infinite;
     opacity: 0.5;
     mix-blend-mode: overlay;
+    /* Performance optimizations */
+    contain: strict;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   @keyframes scanlineMove {
@@ -37,7 +41,8 @@
 
   @media (max-width: 768px) {
     .scanlines {
-      opacity: 0.3;
+      /* Disable on mobile for better performance */
+      display: none;
     }
   }
 </style>

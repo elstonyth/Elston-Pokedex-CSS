@@ -58,6 +58,9 @@
     transition: all 0.4s var(--ease-fluid);
     pointer-events: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    /* GPU optimization */
+    contain: layout style;
+    backface-visibility: hidden;
   }
 
   .back-to-top.visible {

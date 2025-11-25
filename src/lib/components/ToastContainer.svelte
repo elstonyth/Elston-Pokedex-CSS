@@ -42,6 +42,8 @@
     flex-direction: column;
     gap: 0.75rem;
     pointer-events: none;
+    /* GPU optimization */
+    contain: layout style;
   }
   
   .toast {

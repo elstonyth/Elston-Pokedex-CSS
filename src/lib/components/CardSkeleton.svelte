@@ -25,7 +25,7 @@
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -35,14 +35,16 @@
       transparent 100%
     );
     animation: shimmer 2s infinite;
+    /* Use transform instead of left for 60fps performance */
+    will-change: transform;
   }
 
   @keyframes shimmer {
     0% {
-      left: -100%;
+      transform: translateX(-100%);
     }
     100% {
-      left: 100%;
+      transform: translateX(100%);
     }
   }
 

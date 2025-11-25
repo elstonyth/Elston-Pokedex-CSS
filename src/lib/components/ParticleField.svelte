@@ -1,8 +1,25 @@
 <script>
+  import { onMount } from 'svelte';
+  
   export let layer = 1; // 1, 2, or 3 for different depths
+  
+  let isPaused = false;
+  
+  onMount(() => {
+    // Pause animation when tab is hidden to save CPU/GPU
+    const handleVisibility = () => {
+      isPaused = document.hidden;
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibility);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  });
 </script>
 
-<div class="particle-field" data-layer={layer}>
+<div class="particle-field" data-layer={layer} class:paused={isPaused}>
   <div class="particles"></div>
 </div>
 
@@ -16,6 +33,13 @@
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
+    contain: strict;
+    will-change: transform;
+  }
+  
+  /* Pause animation when tab is hidden */
+  .particle-field.paused .particles {
+    animation-play-state: paused;
   }
 
   .particle-field[data-layer="1"] {

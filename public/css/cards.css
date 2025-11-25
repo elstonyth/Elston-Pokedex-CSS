@@ -26,10 +26,14 @@
 
 }
 
+/* 
+  PERFORMANCE: will-change is now scoped to .interacting state in base.css
+  This prevents GPU memory bloat when cards are idle.
+  See base.css lines 114-128 for the optimized will-change rules.
+*/
 .card__shine,
 .card__glare {
-  
-  will-change: transform, opacity, background-image, background-size,
-    background-position, background-blend-mode, filter;
- 
+  /* GPU acceleration applied only during interaction - see base.css */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }

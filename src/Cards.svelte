@@ -46,17 +46,16 @@
 		z-index: 180 !important;
 	}
 
-	/* Staggered Animation */
+	/* Staggered Animation - optimized for 60fps */
 	@keyframes fadeIn {
 		from { 
 			opacity: 0; 
 			transform: translateY(30px) scale(0.95);
-			filter: blur(10px);
+			/* Removed filter: blur() for better 60fps performance */
 		}
 		to { 
 			opacity: 1; 
 			transform: translateY(0) scale(1);
-			filter: blur(0);
 		}
 	}
 

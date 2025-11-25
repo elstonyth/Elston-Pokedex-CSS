@@ -18,9 +18,8 @@
 
 <SkipToContent targetId="main-content" />
 <ScrollProgress />
+<!-- Reduced from 3 layers to 1 for better performance -->
 <ParticleField layer={1} />
-<ParticleField layer={2} />
-<ParticleField layer={3} />
 <CursorSpotlight />
 <ScanLines />
 <BackToTop />
