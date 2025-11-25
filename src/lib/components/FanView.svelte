@@ -259,20 +259,21 @@
   .fan-container {
     position: relative;
     width: 100%;
-    height: 450px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     touch-action: pan-y;
     user-select: none;
     outline: none;
+    padding: 20px 0;
   }
   
   .fan-deck {
     position: relative;
-    width: 280px;
-    height: 400px;
+    width: 300px;
+    height: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -403,18 +404,19 @@
   /* Mobile adjustments */
   @media (max-width: 640px) {
     .fan-container {
-      height: 400px;
+      min-height: 480px;
+      padding: 30px 0;
     }
     
     .fan-deck {
-      width: 240px;
-      height: 340px;
+      width: 260px;
+      height: 380px;
     }
     
     .nav-arrow {
-      width: 40px;
-      height: 40px;
-      font-size: 1.5rem;
+      width: 36px;
+      height: 36px;
+      font-size: 1.25rem;
     }
     
     .nav-prev {
@@ -429,12 +431,13 @@
   /* Desktop - larger fan */
   @media (min-width: 1024px) {
     .fan-container {
-      height: 520px;
+      min-height: 580px;
+      padding: 40px 0;
     }
     
     .fan-deck {
-      width: 320px;
-      height: 450px;
+      width: 340px;
+      height: 480px;
     }
   }
 </style>

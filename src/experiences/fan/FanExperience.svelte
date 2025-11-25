@@ -191,7 +191,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 400px;
+    min-height: 500px;
+    overflow: visible;
   }
   
   .card-container {
@@ -209,7 +210,20 @@
   
   .card-container :global(.card) {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
+  }
+  
+  /* Responsive card sizes */
+  @media (max-width: 640px) {
+    .card-container :global(.card) {
+      max-width: 260px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card-container :global(.card) {
+      max-width: 340px;
+    }
   }
   
   /* Loading state */
