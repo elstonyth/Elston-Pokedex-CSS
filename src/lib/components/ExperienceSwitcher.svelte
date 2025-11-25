@@ -1,6 +1,7 @@
 <script>
   import { experience } from "../stores/experience";
   import { onMount, createEventDispatcher } from "svelte";
+  import DarkModeToggle from "./DarkModeToggle.svelte";
 
   export let searchQuery = "";
   export let showSearch = true;
@@ -146,6 +147,9 @@
       </button>
     {/each}
   </nav>
+  
+  <!-- Dark Mode Toggle -->
+  <DarkModeToggle />
 </header>
 
 <style>

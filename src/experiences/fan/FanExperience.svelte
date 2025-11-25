@@ -154,6 +154,7 @@
   .fan-experience {
     min-height: 100vh;
     padding: 1rem;
+    padding-top: 5rem; /* Space for sticky header */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -161,7 +162,14 @@
   
   .fan-header {
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+  }
+  
+  /* Mobile: more padding for header */
+  @media (max-width: 640px) {
+    .fan-experience {
+      padding-top: 4.5rem;
+    }
   }
   
   .fan-header h1 {

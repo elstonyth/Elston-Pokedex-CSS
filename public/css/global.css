@@ -236,10 +236,20 @@ a:focus {
 main {
   color: var(--text-primary);
   padding: 50px;
+  padding-top: 80px; /* Space for sticky header */
   max-width: 1400px;
   margin: auto;
   position: relative;
   z-index: 1;
+}
+
+/* Mobile: adjust main padding for header */
+@media (max-width: 768px) {
+  main {
+    padding-top: 70px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 header {

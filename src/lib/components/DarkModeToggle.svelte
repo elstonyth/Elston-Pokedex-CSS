@@ -21,8 +21,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
     border-radius: 50%;
@@ -30,6 +30,7 @@
     transition: all 0.3s var(--ease-smooth);
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
   }
   
   .dark-mode-toggle:hover {
@@ -39,7 +40,19 @@
   }
   
   .icon {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     display: block;
+  }
+  
+  /* Smaller on mobile */
+  @media (max-width: 600px) {
+    .dark-mode-toggle {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .icon {
+      font-size: 1rem;
+    }
   }
 </style>
