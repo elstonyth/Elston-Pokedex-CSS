@@ -1,13 +1,13 @@
-# Elston's Pokémon Card Collection
+# Elston's Pokédex
 
-A beautiful, interactive Pokémon card collection viewer featuring realistic holographic effects powered entirely by CSS.
+An interactive Pokémon card gallery I built using Svelte and pure CSS. Features realistic holographic effects, smooth 60fps animations, and multiple viewing modes to explore the collection.
 
-🌐 **[Live Demo](https://elstonyth.github.io/Elston-Pokedex-CSS/)**
+🌐 **[View Live Demo](https://elstonyth.github.io/Elston-Pokedex-CSS/)**
 
 <p align="center">
   <img src="public/pokemon-cards-demo.gif" alt="Holographic Card Effects Demo" />
   <br/>
-  <em>Showcase View - Realistic holographic effects with cursor-aware lighting</em>
+  <em>Cursor-aware holographic lighting in Showcase mode</em>
 </p>
 
 ---
