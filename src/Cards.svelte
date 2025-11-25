@@ -136,31 +136,33 @@
 	@media screen and (max-width: 480px) {
 		.card-grid {
 			grid-template-columns: 1fr;
-			gap: 24px;
-			padding: 20px;
-			max-width: 320px;
-			margin: 0 auto;
+			gap: 20px;
+			padding: 16px;
+			max-width: 100%;
 		}
 
 		:global(.card-grid > .card) {
-			max-width: 280px;
+			width: 85vw;
+			max-width: 300px;
+			margin: 0 auto;
 		}
 
 		:global(.card-grid > .card.active) {
 			width: 90vw !important;
-			max-width: 320px !important;
+			max-width: 340px !important;
 		}
 	}
 
 	/* Extra small screens */
 	@media screen and (max-width: 360px) {
 		.card-grid {
-			padding: 16px 12px;
-			max-width: 300px;
+			padding: 12px;
+			gap: 16px;
 		}
 
 		:global(.card-grid > .card) {
-			max-width: 260px;
+			width: 90vw;
+			max-width: 280px;
 		}
 	}
 </style>
