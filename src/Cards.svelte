@@ -105,44 +105,41 @@
 		}
 	}
 
-	/* Mobile: Single column, centered cards */
+	/* Mobile: 2-column compact grid to reduce scrolling */
 	@media screen and (max-width: 639px) {
 		.card-grid {
-			grid-template-columns: 1fr;
-			gap: clamp(24px, 6vw, 40px);
-			padding: 20px 16px;
-			max-width: 360px;
+			grid-template-columns: repeat(2, 1fr);
+			gap: clamp(12px, 3vw, 20px);
+			padding: 16px 12px;
+			max-width: 100%;
 		}
 
 		:global(.card-grid > .card) {
 			justify-content: center;
-			max-width: 300px;
+			max-width: 100%;
 			margin: 0 auto;
 		}
 	}
 
-	/* Extra small mobile */
+	/* Extra small mobile: still 2 columns but tighter */
 	@media screen and (max-width: 380px) {
 		.card-grid {
-			padding: 16px 12px;
-			gap: 20px;
-			max-width: 320px;
-		}
-
-		:global(.card-grid > .card) {
-			max-width: 280px;
+			padding: 12px 8px;
+			gap: 10px;
 		}
 	}
 
-	/* Scroll snap for mobile */
-	@media screen and (max-width: 639px) {
+	/* Very small screens: single column */
+	@media screen and (max-width: 320px) {
 		.card-grid {
-			scroll-snap-type: y proximity;
+			grid-template-columns: 1fr;
+			gap: 16px;
+			padding: 12px;
+			max-width: 280px;
 		}
 
 		:global(.card-grid > .card) {
-			scroll-snap-align: start;
-			scroll-margin-top: 80px;
+			max-width: 260px;
 		}
 	}
 </style>
