@@ -88,20 +88,20 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.65rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-white);
     border: 1px solid var(--glass-border);
     border-radius: 999px;
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.3s var(--ease-smooth);
   }
   
   .sort-trigger:hover,
   .sort-trigger.open {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-white);
     border-color: var(--neon-cyan);
     color: var(--neon-cyan);
   }
@@ -157,15 +157,15 @@
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     cursor: pointer;
     text-align: left;
     transition: all 0.2s var(--ease-smooth);
   }
   
   .sort-option:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: var(--glass-white);
+    color: var(--text-primary);
   }
   
   .sort-option.active {

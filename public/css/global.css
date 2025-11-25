@@ -12,6 +12,12 @@
   --glow-cyan: rgba(0, 240, 255, 0.4);
   --glow-violet: rgba(178, 75, 243, 0.3);
   
+  /* Text colors for dark/light mode support */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-hint: rgba(255, 255, 255, 0.35);
+  
   /* Legacy support */
   --primary: var(--neon-cyan);
   --link-hover: hsl(207, 100%, 94%);
@@ -31,13 +37,19 @@
   --neon-violet: #7c3aed;
   --plasma-blue: #2563eb;
   --glass-white: rgba(0, 0, 0, 0.04);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(0, 0, 0, 0.12);
   --glow-cyan: rgba(8, 145, 178, 0.3);
   --glow-violet: rgba(124, 58, 237, 0.2);
+  
+  /* Light mode text colors */
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --text-muted: rgba(0, 0, 0, 0.5);
+  --text-hint: rgba(0, 0, 0, 0.38);
 }
 
 :root.light-mode body {
-  color: rgba(0, 0, 0, 0.85);
+  color: var(--text-primary);
 }
 
 * {
@@ -181,7 +193,7 @@ a:focus {
 }
 
 main {
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
   padding: 50px;
   max-width: 1400px;
   margin: auto;

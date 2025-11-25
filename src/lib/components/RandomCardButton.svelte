@@ -37,13 +37,13 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.65rem 1.25rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-white);
     border: 1px solid var(--glass-border);
     border-radius: 999px;
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.3s var(--ease-smooth);
   }

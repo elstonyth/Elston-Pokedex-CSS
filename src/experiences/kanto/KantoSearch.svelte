@@ -86,14 +86,14 @@
 
 <style>
   :global(.experience-151) {
-    color: white;
+    color: var(--text-primary);
   }
 
   .browse-hint {
     font-size: 0.95rem;
     font-weight: 400;
     margin: 1.5rem 0;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
     text-align: center;
   }
 
@@ -118,13 +118,13 @@
   nav a {
     display: inline-block;
     position: relative;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     padding: 0.65rem 1.25rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-white);
     border: 1px solid var(--glass-border);
     border-radius: 999px;
     transition: all 0.3s var(--ease-smooth);

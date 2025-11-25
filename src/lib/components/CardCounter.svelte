@@ -73,7 +73,7 @@
   .separator {
     font-size: 0.75rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -81,13 +81,13 @@
   .total {
     font-size: 1rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
   }
   
   .label {
     font-size: 0.75rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
@@ -95,7 +95,7 @@
   .progress-bar {
     width: 100%;
     height: 3px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-white);
     border-radius: 3px;
     overflow: hidden;
     margin-top: 0.25rem;

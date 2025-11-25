@@ -188,7 +188,7 @@
   }
 
   .search-icon {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
     flex-shrink: 0;
     transition: color 0.2s;
   }
@@ -204,23 +204,23 @@
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
     font-weight: 500;
-    color: white;
+    color: var(--text-primary);
     background: transparent;
     border: none;
     outline: none;
   }
 
   .search-compact input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-hint);
   }
 
   .clear-btn {
     display: flex;
     padding: 0.2rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-white);
     border: none;
     border-radius: 50%;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s;
   }
@@ -235,9 +235,9 @@
     font-family: 'Inter', monospace;
     font-size: 0.6rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.35);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-hint);
+    background: var(--glass-white);
+    border: 1px solid var(--glass-border);
     border-radius: 3px;
     flex-shrink: 0;
   }
@@ -278,7 +278,7 @@
     font-weight: 600;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-muted);
     background: transparent;
     border: none;
     border-radius: 999px;
@@ -289,7 +289,7 @@
   }
 
   .experience-tabs button:hover:not(.selected) {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-primary);
   }
 
   .experience-tabs button.selected {
