@@ -21,13 +21,14 @@
 <style>
 	.card-grid {
 		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 60px 3vw;
+		/* Responsive grid: auto-fit columns with min 280px */
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: clamp(24px, 4vw, 50px);
 		transform-style: preserve-3d;
 		height: 100%;
-		max-width: 1400px;
-		margin: auto;
-		padding: 50px;
+		max-width: 1800px;
+		margin: 0 auto;
+		padding: clamp(16px, 4vw, 50px);
 		position: relative;
 		contain: layout style;
 	}
@@ -39,19 +40,18 @@
 
 	/* Ensure interacting cards have very high z-index */
 	:global(.card.interacting) {
-		z-index: 180 !important;
+		z-index: 200 !important;
 	}
 
 	:global(.card.active) {
-		z-index: 180 !important;
+		z-index: 200 !important;
 	}
 
 	/* Staggered Animation - optimized for 60fps */
 	@keyframes fadeIn {
 		from { 
 			opacity: 0; 
-			transform: translateY(30px) scale(0.95);
-			/* Removed filter: blur() for better 60fps performance */
+			transform: translateY(20px) scale(0.97);
 		}
 		to { 
 			opacity: 1; 
@@ -60,120 +60,89 @@
 	}
 
 	:global(.card-grid > .card) {
-		animation: fadeIn 0.6s var(--ease-fluid) both;
+		animation: fadeIn 0.5s var(--ease-fluid) both;
+		display: flex;
+		justify-content: center;
 	}
 
 	/* Apply delay to first 12 cards - reduced for faster interactivity */
-	:global(.card-grid > .card:nth-child(1)) { animation-delay: 50ms; }
-	:global(.card-grid > .card:nth-child(2)) { animation-delay: 100ms; }
-	:global(.card-grid > .card:nth-child(3)) { animation-delay: 150ms; }
-	:global(.card-grid > .card:nth-child(4)) { animation-delay: 200ms; }
-	:global(.card-grid > .card:nth-child(5)) { animation-delay: 250ms; }
-	:global(.card-grid > .card:nth-child(6)) { animation-delay: 300ms; }
-	:global(.card-grid > .card:nth-child(7)) { animation-delay: 350ms; }
-	:global(.card-grid > .card:nth-child(8)) { animation-delay: 400ms; }
-	:global(.card-grid > .card:nth-child(9)) { animation-delay: 450ms; }
-	:global(.card-grid > .card:nth-child(10)) { animation-delay: 500ms; }
-	:global(.card-grid > .card:nth-child(11)) { animation-delay: 550ms; }
-	:global(.card-grid > .card:nth-child(12)) { animation-delay: 600ms; }
-		
-	@media screen and (min-width: 900px) {
+	:global(.card-grid > .card:nth-child(1)) { animation-delay: 30ms; }
+	:global(.card-grid > .card:nth-child(2)) { animation-delay: 60ms; }
+	:global(.card-grid > .card:nth-child(3)) { animation-delay: 90ms; }
+	:global(.card-grid > .card:nth-child(4)) { animation-delay: 120ms; }
+	:global(.card-grid > .card:nth-child(5)) { animation-delay: 150ms; }
+	:global(.card-grid > .card:nth-child(6)) { animation-delay: 180ms; }
+	:global(.card-grid > .card:nth-child(7)) { animation-delay: 210ms; }
+	:global(.card-grid > .card:nth-child(8)) { animation-delay: 240ms; }
+	:global(.card-grid > .card:nth-child(9)) { animation-delay: 270ms; }
+	:global(.card-grid > .card:nth-child(10)) { animation-delay: 300ms; }
+	:global(.card-grid > .card:nth-child(11)) { animation-delay: 330ms; }
+	:global(.card-grid > .card:nth-child(12)) { animation-delay: 360ms; }
+
+	/* Large desktop: 4 columns */
+	@media screen and (min-width: 1440px) {
 		.card-grid {
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: repeat(4, 1fr);
+			gap: clamp(30px, 3vw, 50px);
 		}
 	}
-	
-	
-	@media screen and (max-width: 900px) {
+
+	/* Desktop: 3 columns */
+	@media screen and (min-width: 1024px) and (max-width: 1439px) {
 		.card-grid {
-			padding: 30px 20px;
-			grid-gap: 60px 0;
+			grid-template-columns: repeat(3, 1fr);
+			gap: clamp(24px, 3vw, 40px);
 		}
-		
-		:global( .card-grid > .card ) {
-			--row: 1;
-			grid-column: 1;
-			grid-row: var(--row);
-			transition: opacity 0.3s ease, transform 0.3s ease;
-			will-change: transform, opacity;
-		}
-
-		/* First 18 cards get stacked layout */
-		:global( .card-grid > .card:nth-child(-n+18):nth-child(1n) ) {
-			position: relative;
-			left: -40px;
-			top: 20px;
-			z-index: 53;
-			transform: translate3d(0, 0, 0.1px) rotateZ(-4deg);
-			opacity: 1;
-		}
-		:global( .card-grid > .card:nth-child(-n+18):nth-child(2n) ) {
-			left: 0px;
-			top: 0px;
-			z-index: 52;
-			transform: translate3d(0, 0, 0.1px) rotateZ(0deg);
-			opacity: 0.99;
-		}
-		:global( .card-grid > .card:nth-child(-n+18):nth-child(3n) ) {
-			left: 40px;
-			top: -10px;
-			z-index: 51;
-			transform: translate3d(0, 0, 0.1px) rotateZ(4deg);
-			opacity: 0.99;
-		}
-		:global( .card-grid > .card.interacting),
-		:global( .card-grid > .card.active ) {
-			opacity: 1;
-			z-index: 200 !important;
-			transform: translate3d(0, 0, 0.1px) !important;
-			left: 0 !important;
-			top: 0 !important;
-		}
-		
-		:global( .card-grid > .card:nth-child(n+4):nth-child(-n+6) ) { grid-row: 2; }
-		:global( .card-grid > .card:nth-child(n+7):nth-child(-n+9) ) { grid-row: 3; }
-		:global( .card-grid > .card:nth-child(n+10):nth-child(-n+12) ) { grid-row: 4; }
-		:global( .card-grid > .card:nth-child(n+13):nth-child(-n+15) ) { grid-row: 5; }
-		:global( .card-grid > .card:nth-child(n+16):nth-child(-n+18) ) { grid-row: 6; }
-		
-		/* Cards after 18th position use normal layout */
-		:global( .card-grid > .card:nth-child(n+19) ) {
-			grid-row: auto;
-			grid-column: auto;
-			position: relative;
-			transform: none !important;
-			left: 0 !important;
-			top: 0 !important;
-			opacity: 1 !important;
-		}
-
 	}
 
-	@media screen and (min-width: 600px) and (max-width: 900px) {
+	/* Tablet: 2 columns */
+	@media screen and (min-width: 640px) and (max-width: 1023px) {
 		.card-grid {
-			max-width: 420px;
-			margin: auto;
-			padding: 40px 30px;
-		}
-		:global( .card-grid > .card:nth-child(-n+18):nth-child(1n) ) {
-			left: -80px;
-			top: 15px;
-			transform: translate3d(0, 0, 0.1px) rotateZ(-4deg);
-		}
-		:global( .card-grid > .card:nth-child(-n+18):nth-child(2n) ) {
-			left: 0px;
-			top: -5px;
-			transform: translate3d(0, 0, 0.1px) rotateZ(0deg);
-		}
-		:global( .card-grid > .card:nth-child(-n+18):nth-child(3n) ) {
-			left: 80px;
-			top: 0px;
-			transform: translate3d(0, 0, 0.1px) rotateZ(4deg);
+			grid-template-columns: repeat(2, 1fr);
+			gap: clamp(20px, 4vw, 36px);
+			padding: clamp(20px, 4vw, 40px);
+			max-width: 720px;
 		}
 	}
 
-	:global( .card-grid > .card.active ) {
-		transform: translate3d(0, 0, 0.1px)!important;
+	/* Mobile: Single column, centered cards */
+	@media screen and (max-width: 639px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+			gap: clamp(24px, 6vw, 40px);
+			padding: 20px 16px;
+			max-width: 360px;
+		}
+
+		:global(.card-grid > .card) {
+			justify-content: center;
+			max-width: 300px;
+			margin: 0 auto;
+		}
 	}
-	
+
+	/* Extra small mobile */
+	@media screen and (max-width: 380px) {
+		.card-grid {
+			padding: 16px 12px;
+			gap: 20px;
+			max-width: 320px;
+		}
+
+		:global(.card-grid > .card) {
+			max-width: 280px;
+		}
+	}
+
+	/* Scroll snap for mobile */
+	@media screen and (max-width: 639px) {
+		.card-grid {
+			scroll-snap-type: y proximity;
+		}
+
+		:global(.card-grid > .card) {
+			scroll-snap-align: start;
+			scroll-margin-top: 80px;
+		}
+	}
 </style>
