@@ -105,12 +105,12 @@
 		}
 	}
 
-	/* Mobile: 2-column compact grid to reduce scrolling */
+	/* Mobile: 2-column grid with larger cards */
 	@media screen and (max-width: 639px) {
 		.card-grid {
 			grid-template-columns: repeat(2, 1fr);
-			gap: clamp(12px, 3vw, 20px);
-			padding: 16px 12px;
+			gap: clamp(16px, 4vw, 24px);
+			padding: 20px 16px;
 			max-width: 100%;
 		}
 
@@ -119,23 +119,44 @@
 			max-width: 100%;
 			margin: 0 auto;
 		}
-	}
 
-	/* Extra small mobile: still 2 columns but tighter */
-	@media screen and (max-width: 380px) {
-		.card-grid {
-			padding: 12px 8px;
-			gap: 10px;
+		/* Make active/expanded card much larger on mobile */
+		:global(.card-grid > .card.active) {
+			position: fixed !important;
+			top: 50% !important;
+			left: 50% !important;
+			transform: translate(-50%, -50%) scale(1) !important;
+			width: 85vw !important;
+			max-width: 340px !important;
+			z-index: 9999 !important;
 		}
 	}
 
-	/* Very small screens: single column */
-	@media screen and (max-width: 320px) {
+	/* Small mobile: single column for better visibility */
+	@media screen and (max-width: 480px) {
 		.card-grid {
 			grid-template-columns: 1fr;
-			gap: 16px;
-			padding: 12px;
+			gap: 24px;
+			padding: 20px;
+			max-width: 320px;
+			margin: 0 auto;
+		}
+
+		:global(.card-grid > .card) {
 			max-width: 280px;
+		}
+
+		:global(.card-grid > .card.active) {
+			width: 90vw !important;
+			max-width: 320px !important;
+		}
+	}
+
+	/* Extra small screens */
+	@media screen and (max-width: 360px) {
+		.card-grid {
+			padding: 16px 12px;
+			max-width: 300px;
 		}
 
 		:global(.card-grid > .card) {
