@@ -11,6 +11,7 @@
 	import Lightbox from "./lib/components/Lightbox.svelte";
 	import HoloExperience from "./experiences/holo/HoloExperience.svelte";
 	import KantoExperience from "./experiences/kanto/KantoExperience.svelte";
+	import FanExperience from "./experiences/fan/FanExperience.svelte";
 	import { experience } from "./lib/stores/experience";
 
 	let searchQuery = "";
@@ -36,7 +37,9 @@
 
 	{#if $experience === "holo"}
 		<HoloExperience bind:query={searchQuery} />
-	{:else}
+	{:else if $experience === "kanto"}
 		<KantoExperience bind:query={searchQuery} />
+	{:else if $experience === "fan"}
+		<FanExperience />
 	{/if}
 </main>

@@ -9,8 +9,55 @@ export const searchQuery = writable('');
 // Active filter type (preset filters like 'starters', 'shinies', etc.)
 export const activeFilter = writable('');
 
+// Type filter (multi-select): ['fire', 'water', 'grass', etc.]
+export const typeFilter = writable([]);
+
+// Rarity filter (multi-select): ['common', 'rare', 'holo rare', etc.]
+export const rarityFilter = writable([]);
+
+// Fan view mode
+export const fanViewEnabled = writable(false);
+export const fanCurrentIndex = writable(0);
+
 // Sort configuration
 export const sortConfig = writable({ field: 'number', direction: 'asc' });
+
+// Available types for filtering
+export const cardTypes = [
+  { id: 'fire', label: 'Fire', icon: '🔥', color: '#F08030' },
+  { id: 'water', label: 'Water', icon: '💧', color: '#6890F0' },
+  { id: 'grass', label: 'Grass', icon: '🌿', color: '#78C850' },
+  { id: 'lightning', label: 'Electric', icon: '⚡', color: '#F8D030' },
+  { id: 'psychic', label: 'Psychic', icon: '🔮', color: '#F85888' },
+  { id: 'fighting', label: 'Fighting', icon: '👊', color: '#C03028' },
+  { id: 'darkness', label: 'Dark', icon: '🌙', color: '#705848' },
+  { id: 'metal', label: 'Steel', icon: '⚙️', color: '#B8B8D0' },
+  { id: 'dragon', label: 'Dragon', icon: '🐉', color: '#7038F8' },
+  { id: 'fairy', label: 'Fairy', icon: '✨', color: '#EE99AC' },
+  { id: 'colorless', label: 'Normal', icon: '⚪', color: '#A8A878' }
+];
+
+// Available rarities for filtering
+export const cardRarities = [
+  { id: 'common', label: 'Common', tier: 1 },
+  { id: 'uncommon', label: 'Uncommon', tier: 1 },
+  { id: 'rare', label: 'Rare', tier: 2 },
+  { id: 'rare holo', label: 'Holo Rare', tier: 2 },
+  { id: 'double rare', label: 'Double Rare', tier: 3 },
+  { id: 'ultra rare', label: 'Ultra Rare', tier: 3 },
+  { id: 'illustration rare', label: 'Illustration', tier: 3 },
+  { id: 'special illustration rare', label: 'Special Art', tier: 4 },
+  { id: 'hyper rare', label: 'Hyper Rare', tier: 4 }
+];
+
+// Clear all filters
+export const clearAllFilters = () => {
+  searchQuery.set('');
+  activeFilter.set('');
+  typeFilter.set([]);
+  rarityFilter.set([]);
+  fanCurrentIndex.set(0);
+};
 
 // Favorites stored in localStorage
 const storedFavorites = typeof localStorage !== 'undefined' 
@@ -71,10 +118,10 @@ export const isFavorite = (cardId) => {
   return result;
 };
 
-// Filtered cards based on search and filters
+// Filtered cards based on search, type, rarity, and other filters
 export const filteredCards = derived(
-  [allCards, searchQuery, activeFilter, sortConfig],
-  ([$allCards, $searchQuery, $activeFilter, $sortConfig]) => {
+  [allCards, searchQuery, activeFilter, typeFilter, rarityFilter, sortConfig],
+  ([$allCards, $searchQuery, $activeFilter, $typeFilter, $rarityFilter, $sortConfig]) => {
     let result = [...$allCards];
     
     // Apply search query
@@ -87,6 +134,26 @@ export const filteredCards = derived(
         const number = card.number?.toString().toLowerCase() || '';
         return name.includes(query) || types.includes(query) || 
                rarity.includes(query) || number.includes(query);
+      });
+    }
+    
+    // Apply type filter
+    if ($typeFilter.length > 0) {
+      result = result.filter(card => {
+        const cardTypes = card.types?.map(t => t.toLowerCase()) || [];
+        return $typeFilter.some(filterType => 
+          cardTypes.includes(filterType.toLowerCase())
+        );
+      });
+    }
+    
+    // Apply rarity filter
+    if ($rarityFilter.length > 0) {
+      result = result.filter(card => {
+        const cardRarity = card.rarity?.toLowerCase() || '';
+        return $rarityFilter.some(filterRarity => 
+          cardRarity.includes(filterRarity.toLowerCase())
+        );
       });
     }
     

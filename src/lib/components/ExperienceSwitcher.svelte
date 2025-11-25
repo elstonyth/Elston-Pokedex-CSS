@@ -10,6 +10,7 @@
   const options = [
     { id: "holo", label: "Showcase", icon: "⚔️" },
     { id: "kanto", label: "Kanto 151", icon: "🔴" },
+    { id: "fan", label: "Fan View", icon: "🃏" },
   ];
 
   let headerRef;
