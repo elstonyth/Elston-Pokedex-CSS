@@ -4,20 +4,32 @@
 	import Card from "./Card.svelte";
 
   // data / pokemon props
+  /** @type {string | undefined} */
   export let id = undefined;
+  /** @type {string | undefined} */
   export let name = undefined;
+  /** @type {string | undefined} */
   export let number = undefined;
+  /** @type {string | undefined} */
   export let set = undefined;
+  /** @type {string | string[] | undefined} */
   export let types = undefined;
+  /** @type {string | string[] | undefined} */
   export let subtypes = undefined;
+  /** @type {string | undefined} */
   export let supertype = undefined;
+  /** @type {string | undefined} */
   export let rarity = undefined;
   export let isReverse = false;
 
   // image props
+  /** @type {string | undefined} */
   export let img = undefined;
+  /** @type {string | undefined} */
   export let back = undefined;
+  /** @type {string | boolean | undefined} */
   export let foil = undefined;
+  /** @type {string | boolean | undefined} */
   export let mask = undefined;
 
   // context/environment props
@@ -27,32 +39,32 @@
   /**
    * Shiny Vault Card (starts with sv)
    */
-  const isShiny = isDefined(number) && number.toLowerCase().startsWith( "sv" );
+  const isShiny = number?.toLowerCase()?.startsWith( "sv" ) ?? false;
   /**
    Trainer / Galar Gallery Card (not shiny)
    */
-  const isGallery = isDefined(number) && !!number.match(/^[tg]g/i);
+  const isGallery = !!number?.match(/^[tg]g/i);
   /**
    Alternate Art Card (not shiny / gallery)
    */
-  const isAlternate = isDefined(id) && altArts.includes( id ) && !isShiny && !isGallery;
+  const isAlternate = id !== undefined && altArts.includes( id ) && !isShiny && !isGallery;
   /**
    Promo Card
    */
-  const isPromo = isDefined(set) && set === "swshp";
+  const isPromo = set === "swshp";
   
   if ( isReverse ) {
     rarity = rarity + " Reverse Holo";
   }
 
   if ( isGallery ) {
-    if ( isDefined(rarity) && rarity.startsWith( "Trainer Gallery" ) ) {
+    if ( rarity !== undefined && rarity.startsWith( "Trainer Gallery" ) ) {
       rarity = rarity.replace( /Trainer Gallery\s*/, "" );
     }
-    if ( isDefined(rarity) && rarity.includes( "Rare Holo V" ) && isDefined(subtypes) && subtypes.includes("VMAX") ) {
+    if ( rarity?.includes( "Rare Holo V" ) && subtypes?.includes("VMAX") ) {
       rarity = "Rare Holo VMAX";
     }
-    if ( isDefined(rarity) && rarity.includes( "Rare Holo V" ) && isDefined(subtypes) && subtypes.includes("VSTAR") ) {
+    if ( rarity?.includes( "Rare Holo V" ) && subtypes?.includes("VSTAR") ) {
       rarity = "Rare Holo VSTAR";
     }
   }
@@ -61,15 +73,15 @@
     if ( id === "swshp-SWSH076" || id === "swshp-SWSH077" ) {
       rarity = "Rare Secret";
 
-    } else if ( isDefined(subtypes) && subtypes.includes("V") ) {
+    } else if ( subtypes?.includes("V") ) {
       rarity = "Rare Holo V";
-    } else if ( isDefined(subtypes) && subtypes.includes("V-UNION") ) {
+    } else if ( subtypes?.includes("V-UNION") ) {
       rarity = "Rare Holo VUNION";
-    } else if ( isDefined(subtypes) && subtypes.includes("VMAX") ) {
+    } else if ( subtypes?.includes("VMAX") ) {
       rarity = "Rare Holo VMAX";
-    } else if ( isDefined(subtypes) && subtypes.includes("VSTAR") ) {
+    } else if ( subtypes?.includes("VSTAR") ) {
       rarity = "Rare Holo VSTAR";
-    } else if ( isDefined(subtypes) && subtypes.includes("Radiant") ) {
+    } else if ( subtypes?.includes("Radiant") ) {
       rarity = "Radiant Rare";
     }
   }

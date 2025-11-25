@@ -216,6 +216,10 @@
   };
 
   onMount(() => {
+    // Listen for random card keyboard shortcut (custom event)
+    const handleRandomCard = () => pickRandomCard();
+    window.addEventListener('randomCard', handleRandomCard);
+    
     loadCards().then(() => {
       const initialQuery = searchFromUrl();
       if (initialQuery) {
@@ -223,10 +227,12 @@
         filterFromQuery(query);
       }
     });
+    
+    return () => {
+      window.removeEventListener('randomCard', handleRandomCard);
+    };
   });
 </script>
-
-<svelte:window on:randomCard={pickRandomCard} />
 
 <main class="experience-151">
   <Search 
