@@ -237,21 +237,23 @@
   </button>
 </div>
 
-<!-- Position indicator -->
-<div class="fan-indicator">
-  <span class="fan-position">{currentIndex + 1} / {totalCards}</span>
-  
-  <!-- Dot indicators (show max 7 dots) -->
-  <div class="fan-dots">
-    {#each Array(Math.min(7, totalCards)) as _, i}
-      {@const dotIndex = Math.max(0, Math.min(currentIndex - 3 + i, totalCards - 1))}
-      <button 
-        class="dot"
-        class:active={dotIndex === currentIndex}
-        on:click={() => goToIndex(dotIndex)}
-        aria-label="Go to card {dotIndex + 1}"
-      />
-    {/each}
+<!-- Position indicator wrapper for mobile positioning -->
+<div class="fan-indicator-wrapper">
+  <div class="fan-indicator">
+    <span class="fan-position">{currentIndex + 1} / {totalCards}</span>
+    
+    <!-- Dot indicators (show max 7 dots) -->
+    <div class="fan-dots">
+      {#each Array(Math.min(7, totalCards)) as _, i}
+        {@const dotIndex = Math.max(0, Math.min(currentIndex - 3 + i, totalCards - 1))}
+        <button 
+          class="dot"
+          class:active={dotIndex === currentIndex}
+          on:click={() => goToIndex(dotIndex)}
+          aria-label="Go to card {dotIndex + 1}"
+        />
+      {/each}
+    </div>
   </div>
 </div>
 
@@ -360,12 +362,19 @@
     right: 10px;
   }
   
+  /* Indicator wrapper */
+  .fan-indicator-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
   /* Indicator */
   .fan-indicator {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     margin-top: 1rem;
   }
   
@@ -399,6 +408,43 @@
   .dot.active {
     background: var(--neon-cyan);
     transform: scale(1.3);
+  }
+  
+  /* Mobile: compact indicator */
+  @media (max-width: 640px) {
+    .fan-indicator-wrapper {
+      margin-top: 0.5rem;
+    }
+    
+    .fan-indicator {
+      flex-direction: row;
+      gap: 0.5rem;
+      margin-top: 0;
+      padding: 0.35rem 0.75rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+    }
+    
+    .fan-position {
+      font-size: 0.65rem;
+      order: 2;
+      opacity: 0.8;
+    }
+    
+    .fan-dots {
+      gap: 0.3rem;
+      order: 1;
+    }
+    
+    .dot {
+      width: 5px;
+      height: 5px;
+    }
+    
+    .dot.active {
+      transform: scale(1.2);
+    }
   }
   
   /* Mobile adjustments */
