@@ -112,9 +112,13 @@
 }
 
 .card.interacting {
-  z-index: calc(var(--card-scale) * 120);
+  z-index: 200 !important;
   /* Enable GPU acceleration only during interaction */
   will-change: transform;
+}
+
+.card.active {
+  z-index: 200 !important;
 }
 
 .card.interacting .card__translater,

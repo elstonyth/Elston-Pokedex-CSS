@@ -121,9 +121,13 @@
 			transform: translate3d(0, 0, 0.1px) rotateZ(4deg);
 			opacity: 0.99;
 		}
-		:global( .card-grid > .card.interacting) ,
+		:global( .card-grid > .card.interacting),
 		:global( .card-grid > .card.active ) {
 			opacity: 1;
+			z-index: 200 !important;
+			transform: translate3d(0, 0, 0.1px) !important;
+			left: 0 !important;
+			top: 0 !important;
 		}
 		
 		:global( .card-grid > .card:nth-child(n+4):nth-child(-n+6) ) { grid-row: 2; }

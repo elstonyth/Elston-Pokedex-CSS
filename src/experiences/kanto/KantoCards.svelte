@@ -120,6 +120,15 @@
     :global(.card-grid > .card-slot:has(.card.is-scaled)) {
       opacity: 1;
     }
+    
+    /* Fix z-index for interacting cards in stacked mobile layout */
+    :global(.card-grid > .card-slot:has(.card.interacting)),
+    :global(.card-grid > .card-slot:has(.card.active)) {
+      z-index: 200 !important;
+      transform: translate3d(0, 0, 0.1px) !important;
+      left: 0 !important;
+      top: 0 !important;
+    }
   }
 
   @media screen and (min-width: 600px) and (max-width: 900px) {
