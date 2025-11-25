@@ -121,6 +121,17 @@
   z-index: 200 !important;
 }
 
+/* Mobile tap feedback */
+@media (hover: none) and (pointer: coarse) {
+  .card__rotator {
+    transition: transform 0.15s var(--ease-smooth);
+  }
+  
+  .card__rotator:active {
+    transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y)) scale(0.97);
+  }
+}
+
 .card.interacting .card__translater,
 .card.interacting .card__rotator {
   will-change: transform;

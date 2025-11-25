@@ -132,37 +132,61 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.4rem 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
+    padding: 0.45rem 0.85rem;
+    background: var(--glass-white);
     border: 1px solid var(--glass-border);
     border-radius: 999px;
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    color: var(--text-primary);
     cursor: pointer;
     transition: all 0.2s var(--ease-smooth);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   .filter-badge:hover {
-    background: rgba(255, 100, 100, 0.15);
-    border-color: rgba(255, 100, 100, 0.5);
-    transform: scale(1.05);
+    background: rgba(255, 100, 100, 0.2);
+    border-color: #ff6b6b;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(255, 100, 100, 0.2);
+  }
+  
+  .filter-badge:active {
+    transform: translateY(0) scale(0.98);
   }
   
   .filter-badge.search {
-    background: rgba(0, 240, 255, 0.1);
-    border-color: rgba(0, 240, 255, 0.3);
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+  }
+  
+  .filter-badge.search:hover {
+    background: rgba(0, 240, 255, 0.25);
+    box-shadow: 0 4px 16px rgba(0, 240, 255, 0.3);
   }
   
   .filter-badge.preset {
-    background: rgba(178, 75, 243, 0.1);
-    border-color: rgba(178, 75, 243, 0.3);
+    background: rgba(178, 75, 243, 0.15);
+    border-color: var(--neon-violet);
+    color: var(--neon-violet);
+  }
+  
+  .filter-badge.preset:hover {
+    background: rgba(178, 75, 243, 0.25);
+    box-shadow: 0 4px 16px rgba(178, 75, 243, 0.3);
   }
   
   .filter-badge.sort {
-    background: rgba(77, 124, 255, 0.1);
-    border-color: rgba(77, 124, 255, 0.3);
+    background: rgba(77, 124, 255, 0.15);
+    border-color: var(--plasma-blue);
+    color: var(--plasma-blue);
+  }
+  
+  .filter-badge.sort:hover {
+    background: rgba(77, 124, 255, 0.25);
+    box-shadow: 0 4px 16px rgba(77, 124, 255, 0.3);
   }
   
   .badge-icon {

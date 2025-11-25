@@ -18,6 +18,8 @@
   let indicatorStyle = "";
   let mounted = false;
   let isSearchFocused = false;
+  let isScrolled = false;
+  let lastScrollY = 0;
 
   const setExperience = (id) => {
     experience.set(id);
@@ -52,12 +54,24 @@
     dispatch('search', searchQuery);
   };
 
+  // Handle scroll for header shrink effect
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    isScrolled = scrollY > 50;
+    lastScrollY = scrollY;
+  };
+
   onMount(() => {
     mounted = true;
     updateIndicator();
     window.addEventListener('keydown', handleGlobalKeydown);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial scroll position
     setTimeout(() => headerRef?.classList.add('settled'), 700);
-    return () => window.removeEventListener('keydown', handleGlobalKeydown);
+    return () => {
+      window.removeEventListener('keydown', handleGlobalKeydown);
+      window.removeEventListener('scroll', handleScroll);
+    };
   });
 
   $: if ($experience && mounted) {
@@ -78,7 +92,7 @@
   };
 </script>
 
-<header class="unified-header" bind:this={headerRef}>
+<header class="unified-header" class:scrolled={isScrolled} bind:this={headerRef}>
   <!-- Compact Search -->
   {#if showSearch}
     <div class="search-compact" class:focused={isSearchFocused}>
@@ -153,6 +167,19 @@
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  /* Shrink header on scroll */
+  .unified-header.scrolled {
+    padding: 0.3rem 0.4rem 0.3rem 0.35rem;
+    gap: 0.5rem;
+    margin: 0.75rem auto;
+    top: 0.5rem;
+    background: rgba(10, 14, 39, 0.85);
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
     animation: headerSlideIn 0.6s var(--ease-fluid) both;
   }
 

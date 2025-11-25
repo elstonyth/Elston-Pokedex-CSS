@@ -205,14 +205,14 @@
     margin: 0;
     font-size: 1.25rem;
     font-weight: 600;
-    color: white;
+    color: var(--text-primary);
   }
   
   .close-btn {
     background: transparent;
     border: none;
     font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
     cursor: pointer;
     padding: 0.25rem;
     line-height: 1;
@@ -220,7 +220,7 @@
   }
   
   .close-btn:hover {
-    color: white;
+    color: var(--text-primary);
     transform: scale(1.1);
   }
   
@@ -254,7 +254,7 @@
     align-items: center;
     gap: 0.75rem;
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
   }
   
   kbd {
