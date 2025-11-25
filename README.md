@@ -1,44 +1,136 @@
-# Pokémon Cards Holographic effect in CSS
+# Elston's Pokémon Card Collection
 
-This is a repository holder for the Pokemon Cards CSS Holographic effect.  
+A beautiful, interactive Pokémon card collection viewer featuring realistic holographic effects powered entirely by CSS.
 
-| <img src="https://github.com/user-attachments/assets/ca493541-57bb-48c3-b40c-925f7203a933" width=80> | As seen on [css-tricks.com](https://css-tricks.com/holographic-trading-card-effect/) and [codepen](https://codepen.io/simeydotme/pen/abYWJdX) 
-| --: | :-- |
-| [<img src="https://github.com/user-attachments/assets/fd862cc7-2f30-4a35-9dbc-778edcc369f3" width=80>](https://poke-holo.simey.me/) | Demo running @ https://poke-holo.simey.me/   |
-| [<img src="https://github.com/user-attachments/assets/f1c9d376-0948-4b96-826e-f016e6584736" width=80><img src="https://github.com/user-attachments/assets/8137f0c8-6bc2-4f22-90c9-03cb8332b6f1" width=25>](https://poke-151.simey.me/) | 151 version @ https://poke-151.simey.me/ ⭐ |
-
-### A collection of advanced CSS styles, applied with SvelteJS.
-Uses CSS Transforms, Gradients, Blend-modes and Filters to simulate the various Holofoil effects found
-in the Sword and Shield era of Pokemon Trading Cards.
+🌐 **[Live Demo](https://elstonyth.github.io/Elston-Pokedex-CSS/)**
 
 <img src="public/pokemon-cards-demo.gif" />
 
+---
 
+## ✨ Features
+
+### Three Viewing Experiences
+
+| View | Description |
+|------|-------------|
+| **Showcase** | Browse 90+ cards with 14 different foil effects |
+| **Kanto 151** | Complete Pokémon 151 set with search & filters |
+| **Fan View** | Swipeable card deck with Type & Rarity filters |
+
+### Highlights
+
+- 🎴 **207 Cards** from the Pokémon 151 set
+- 🌈 **14 Foil Effects** - Holo, Cosmos, Radiant, V, VMAX, Rainbow, and more
+- 🔍 **Smart Search** - Search by name, type, or rarity
+- 🎨 **Dark/Light Mode** - Toggle between themes
+- 📱 **Fully Responsive** - Optimized for desktop, tablet, and mobile
+- ⚡ **60fps Animations** - Smooth, GPU-accelerated interactions
+- 🎯 **Type & Rarity Filters** - Filter cards by Pokémon type or card rarity
 
 ---
 
-### ⚠️ NOTE
-Please [read `#issues/19` before asking / requesting any help](https://github.com/simeydotme/pokemon-cards-css/issues/19) or advice on the Project.  
-Thank you.
+## 🛠️ Tech Stack
+
+- **Framework**: [Svelte](https://svelte.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: Pure CSS with CSS Variables
+- **Animations**: CSS Transforms, Gradients, Blend-modes & Filters
+- **Hosting**: GitHub Pages
 
 ---
 
-#### support / tip  
-If you think this is super cool, or useful, and want to donate a little, then you are also super cool!
+## 🚀 Getting Started
 
-|  |  |         |
-|--|--:|---------|
-| <img src="https://user-images.githubusercontent.com/2817396/149629283-6002944f-9253-4e35-917d-89b476deae4e.png" width=20> | [![£1 One Pound tip](https://user-images.githubusercontent.com/2817396/149629980-08b9a952-bd6a-4c23-be78-05e3fd534352.png)](https://www.paypal.com/paypalme/simey/1) | [£1 tip](https://www.paypal.com/paypalme/simey/1) |
-| <img src="https://user-images.githubusercontent.com/2817396/149629283-6002944f-9253-4e35-917d-89b476deae4e.png" width=20> | [![£5 Five Pounds tip](https://user-images.githubusercontent.com/2817396/149629994-3a99770c-d333-46e7-9818-ab6b18ad0202.png)](https://www.paypal.com/paypalme/simey/5) | [£5 tip](https://www.paypal.com/paypalme/simey/5) |
-| <img src="https://user-images.githubusercontent.com/2817396/149629283-6002944f-9253-4e35-917d-89b476deae4e.png" width=20> | [![£10 Ten Pounds tip](https://user-images.githubusercontent.com/2817396/149630000-95aa4234-ff67-4e7c-a7f4-ffd52f25e6d8.png)](https://www.paypal.com/paypalme/simey/10) | [£10 tip](https://www.paypal.com/paypalme/simey/10) |
+### Prerequisites
 
+- Node.js 18+
+- npm
 
+### Installation
 
+```bash
+# Clone the repository
+git clone https://github.com/elstonyth/Elston-Pokedex-CSS.git
 
+# Navigate to directory
+cd Elston-Pokedex-CSS
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Visit `http://localhost:5173` to view the app.
+
+### Build for Production
+
+```bash
+npm run build
+```
 
 ---
-#### attribution
 
-<sub>- Galaxy Holo from [aschefield101](https://www.deviantart.com/aschefield101/art/HoloSheet-2012-313543843)</sub>  
-<sub>- Some backgrounds from [Vecteezy](https://www.vecteezy.com/free-photos)</sub>
-# Deployed via GitHub Pages
+## 📁 Project Structure
+
+```
+src/
+├── experiences/
+│   ├── holo/          # Showcase experience
+│   ├── kanto/         # Kanto 151 experience  
+│   └── fan/           # Fan View experience
+├── lib/
+│   ├── components/    # Reusable components
+│   └── stores/        # Svelte stores
+└── App.svelte         # Main app component
+```
+
+---
+
+## 🎨 Card Effects
+
+| Effect | Description |
+|--------|-------------|
+| Basic | Standard card without effects |
+| Reverse Holo | Holographic body with regular artwork |
+| Regular Holo | Classic holographic artwork |
+| Cosmos Holo | Galaxy pattern overlay |
+| Amazing Rare | Colorful border gradient |
+| Radiant | Shimmering radiant effect |
+| V / V Full Art | Modern V card styling |
+| VMAX | Dynamic VMAX effects |
+| V Star | Premium star holographic |
+| Trainer Gallery | Special trainer artwork |
+| Rainbow Rare | Rainbow gradient foil |
+| Secret Rare / Gold | Golden border effects |
+
+---
+
+## 📱 Responsive Design
+
+- **Desktop**: Full card grid with hover interactions
+- **Tablet**: Adaptive grid layout
+- **Mobile**: Touch-optimized with swipe gestures in Fan View
+
+---
+
+## 🙏 Credits
+
+- **Original CSS Effects**: [simeydotme/pokemon-cards-css](https://github.com/simeydotme/pokemon-cards-css)
+- **Card Data**: [Pokémon TCG API](https://pokemontcg.io/)
+- **Galaxy Holo**: [aschefield101](https://www.deviantart.com/aschefield101/art/HoloSheet-2012-313543843)
+- **Backgrounds**: [Vecteezy](https://www.vecteezy.com/free-photos)
+
+---
+
+## 📄 License
+
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/elstonyth">Elston.Y</a>
+</p>
