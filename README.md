@@ -4,7 +4,11 @@ A beautiful, interactive Pokémon card collection viewer featuring realistic hol
 
 🌐 **[Live Demo](https://elstonyth.github.io/Elston-Pokedex-CSS/)**
 
-<img src="public/pokemon-cards-demo.gif" />
+<p align="center">
+  <img src="public/pokemon-cards-demo.gif" alt="Holographic Card Effects Demo" />
+  <br/>
+  <em>Showcase View - Realistic holographic effects with cursor-aware lighting</em>
+</p>
 
 ---
 
@@ -116,12 +120,12 @@ src/
 
 ---
 
-## 🙏 Credits
+## 🙏 Acknowledgments
 
-- **Original CSS Effects**: [simeydotme/pokemon-cards-css](https://github.com/simeydotme/pokemon-cards-css)
 - **Card Data**: [Pokémon TCG API](https://pokemontcg.io/)
-- **Galaxy Holo**: [aschefield101](https://www.deviantart.com/aschefield101/art/HoloSheet-2012-313543843)
-- **Backgrounds**: [Vecteezy](https://www.vecteezy.com/free-photos)
+- **Holographic Textures**: [aschefield101](https://www.deviantart.com/aschefield101/art/HoloSheet-2012-313543843)
+- **Background Assets**: [Vecteezy](https://www.vecteezy.com/free-photos)
+- **Inspiration**: CSS holographic techniques from the web dev community
 
 ---
 
