@@ -59,8 +59,9 @@
 
   // 60 FPS optimized spring settings
   // Higher precision = stops sooner, higher damping = fewer oscillations
-  const springInteractSettings = { stiffness: 0.1, damping: 0.4, precision: 0.1 };
-  const springPopoverSettings = { stiffness: 0.05, damping: 0.55, precision: 0.1 };
+  // Reduced stiffness + higher damping = less swinging, smoother motion
+  const springInteractSettings = { stiffness: 0.066, damping: 0.66, precision: 0.2 };
+  const springPopoverSettings = { stiffness: 0.04, damping: 0.7, precision: 0.15 };
   let springRotate = spring({ x: 0, y: 0 }, springInteractSettings);
   let springGlare = spring({ x: 50, y: 50, o: 0 }, springInteractSettings);
   let springBackground = spring({ x: 50, y: 50 }, springInteractSettings);
@@ -137,11 +138,12 @@
       };
 
       updateSprings({
-        x: adjust(percent.x, 0, 100, 37, 63),
-        y: adjust(percent.y, 0, 100, 33, 67),
+        x: adjust(percent.x, 0, 100, 40, 60),
+        y: adjust(percent.y, 0, 100, 38, 62),
       },{
-        x: round(-(center.x / 3.5)),
-        y: round(center.y / 2),
+        // Reduced rotation amplitude: /5 and /4 instead of /3.5 and /2
+        x: round(-(center.x / 5)),
+        y: round(center.y / 4),
       },{
         x: round(percent.x),
         y: round(percent.y),
